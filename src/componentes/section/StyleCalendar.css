@@ -1,0 +1,28 @@
+/* Estilos personalizados para el calendario */
+.calendar-wrapper {
+  width: 300px; /* Personaliza el ancho del calendario según tus necesidades */
+}
+
+.custom-calendar {
+  color: #000; /* Personaliza el color del texto */
+  background-color: #fff; /* Personaliza el color de fondo */
+  border: 1px solid #ccc; /* Personaliza el borde */
+}
+
+.react-datepicker__day--selected {
+  background-color: #2c19f9; /* Personaliza el color del día seleccionado */
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #007bff; /* Personaliza el color del día seleccionado usando el teclado */
+}
+
+.react-datepicker__day:hover {
+  background-color: #f0f0f0; /* Personaliza el color al pasar el ratón sobre el día */
+}
+
+.highlighted {
+  background-color: red; /* Cambia el color de fondo a rojo */
+  color: white; /* Cambia el color del texto a blanco */
+
+}

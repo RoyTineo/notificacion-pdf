@@ -30,35 +30,18 @@ const Sidebar = () => {
       </header>
       <div className="menu-bar">
         <div className="menu">
-          <li className="search-box" onClick={() => setIsSidebarOpen(false)}>
+          {/* <li className="search-box" onClick={() => setIsSidebarOpen(false)}>
             <i className='bx bx-search icon'></i>
             <input type="text" placeholder="Search..." />
-          </li>
+          </li> */}
           <ul className="menu-link">
             <li>
-              <a href="#">
+              <a href="/">
                 <i className='bx bx-home-alt icon'></i>
-                <span className="text nav-text">Dashboard</span>
+                <span className="text nav-text">Hacer Notificación</span>
               </a>
             </li>
-            <li>
-              <a href="#">
-                <i className='bx bx-home-alt icon'></i>
-                <span className="text nav-text">Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className='bx bx-home-alt icon'></i>
-                <span className="text nav-text">Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className='bx bx-home-alt icon'></i>
-                <span className="text nav-text">Dashboard</span>
-              </a>
-            </li>
+            
            
             {/* Agrega más elementos de menú aquí */}
           </ul>

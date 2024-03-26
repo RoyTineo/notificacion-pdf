@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PDFViewerComponent from "../PDFViewerComponent";
+import CalendarComponent from "./CalendarComponent";
 
 function MainContainer() {
   const today = new Date();
@@ -46,31 +47,7 @@ function MainContainer() {
     ocupacionDcdo: "",
     referenciaDcdo: "",
   };
-  //   const [inputValues, setInputValues] = useState({
-  //     exp: "",
-  //     nombreDnte: "",
-  //     nombreDcdo: "",
-
-  //     fechaAudiencia: today.getDate(),
-  //     diaAudiencia: "",
-  //     mesAudiencia: monthName,
-  //     anioAudiencia: today.getFullYear(),
-
-  //     horaAudiencia: "10:00 A.M.",
-  //     fechaDocumento: today.getDate(),
-  //     mesDocumento: monthName,
-  //     anioDocumento: today.getFullYear(),
-
-  //     domicilioDnte: "",
-  //     distritoDnte: "",
-  //     ocupacionDnte: "",
-  //     referenciaDnte: "",
-
-  //     domicilioDcdo: "",
-  //     distritoDcdo: "",
-  //     ocupacionDcdo: "",
-  //     referenciaDcdo: "",
-  //   });
+  
   // Define el estado para almacenar los valores de los inputs
   const [inputValues, setInputValues] = useState(initialValues);
 
@@ -99,40 +76,43 @@ function MainContainer() {
     console.log("limpiando formulario"); // Establece el estado en los valores iniciales
   };
 
-
-    const showPDF = () => {
-      return <PDFViewerComponent data={reportData} />;
-    };
+  const showPDF = () => {
+    return <PDFViewerComponent data={reportData} />;
+  };
 
   return (
     <section className="home">
-      <div className="container-md">
-        <p>Notificacion</p>.
+      <div className="container-md mt-4">
         <div className="border border-info bg-white  rounded mb-4 p-4">
+          <div className="row">
+            <div className="col-md-6 mb-4">
           <button className="btn btn-success mb-4 " onClick={handleClearForm}>
             Nuevo Exp
           </button>
-
-          <div className="col-md-6 mb-4">
-            <div className="card">
-              <h5 className="card-header bg-warning text-white p-3">
-                Numero de Exp
-              </h5>
-              <div className="card-body">
-                {/* <div className="col-md-2"> */}
-                <label htmlFor="inputExp" className="form-label">
-                  Exp. N°
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputExp"
-                  name="exp"
-                  value={inputValues.exp}
-                  onChange={handleChange}
-                />
-                {/* </div> */}
+              <div className="card">
+                <h5 className="card-header bg-warning text-white p-3">
+                  Numero de Exp
+                </h5>
+                <div className="card-body">
+                  {/* <div className="col-md-2"> */}
+                  <label htmlFor="inputExp" className="form-label">
+                    Exp. N°
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputExp"
+                    name="exp"
+                    value={inputValues.exp}
+                    onChange={handleChange}
+                  />
+                  {/* </div> */}
+                </div>
               </div>
+            </div>
+
+            <div className="col-md-6 mb-4 text-center">
+              <CalendarComponent />
             </div>
           </div>
 
@@ -488,7 +468,7 @@ function MainContainer() {
             </div>
             <div className="col-md-4">
               <label htmlFor="inputAnioDocumento" className="form-label">
-                Año del docuemnto:
+                Año del documento:
               </label>
               <select
                 className="form-select"

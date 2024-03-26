@@ -5,15 +5,23 @@ function MainContainer() {
   const today = new Date();
 
   const months = [
-    "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
-    "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
+    "ENERO",
+    "FEBRERO",
+    "MARZO",
+    "ABRIL",
+    "MAYO",
+    "JUNIO",
+    "JULIO",
+    "AGOSTO",
+    "SEPTIEMBRE",
+    "OCTUBRE",
+    "NOVIEMBRE",
+    "DICIEMBRE",
   ];
 
   const monthName = months[today.getMonth()];
-  console.log(today.getMonth());
-  console.log(monthName);
 
-  const [inputValues, setInputValues] = useState({
+  const initialValues = {
     exp: "",
     nombreDnte: "",
     nombreDcdo: "",
@@ -37,38 +45,73 @@ function MainContainer() {
     distritoDcdo: "",
     ocupacionDcdo: "",
     referenciaDcdo: "",
-  });
+  };
+  //   const [inputValues, setInputValues] = useState({
+  //     exp: "",
+  //     nombreDnte: "",
+  //     nombreDcdo: "",
+
+  //     fechaAudiencia: today.getDate(),
+  //     diaAudiencia: "",
+  //     mesAudiencia: monthName,
+  //     anioAudiencia: today.getFullYear(),
+
+  //     horaAudiencia: "10:00 A.M.",
+  //     fechaDocumento: today.getDate(),
+  //     mesDocumento: monthName,
+  //     anioDocumento: today.getFullYear(),
+
+  //     domicilioDnte: "",
+  //     distritoDnte: "",
+  //     ocupacionDnte: "",
+  //     referenciaDnte: "",
+
+  //     domicilioDcdo: "",
+  //     distritoDcdo: "",
+  //     ocupacionDcdo: "",
+  //     referenciaDcdo: "",
+  //   });
+  // Define el estado para almacenar los valores de los inputs
+  const [inputValues, setInputValues] = useState(initialValues);
 
   const [reportData, setReportData] = useState([]);
 
   const handleChange = (e) => {
-   
-    // const { name, value } = e.target;
-    // const uppercaseValue = value.toUpperCase();
-    // setInputValues({ ...inputValues, [name]: uppercaseValue });
-
     const { name, value } = e.target;
-    setInputValues({ ...inputValues, [name]: value });
+    const uppercaseValue = value.toUpperCase();
+    setInputValues({ ...inputValues, [name]: uppercaseValue });
+
+    // const { name, value } = e.target;
+    // setInputValues({ ...inputValues, [name]: value });
   };
 
   const handleGenerateReport = () => {
     const newData = Object.values(inputValues);
     setReportData(newData);
     console.log(newData);
+    // Llama a PDFViewerComponent después de establecer reportData
+    showPDF();
   };
 
   // Función para limpiar el formulario
   const handleClearForm = () => {
-    // setInputValues(); // Establece el estado en los valores iniciales
-    console.log("limpiando formulario");; // Establece el estado en los valores iniciales
-  };  
+    setInputValues(); // Establece el estado en los valores iniciales
+    console.log("limpiando formulario"); // Establece el estado en los valores iniciales
+  };
+
+
+    const showPDF = () => {
+      return <PDFViewerComponent data={reportData} />;
+    };
 
   return (
     <section className="home">
       <div className="container-md">
         <p>Notificacion</p>.
         <div className="border border-info bg-white  rounded mb-4 p-4">
-          <button className="btn btn-success mb-4 " onClick={handleClearForm}>Nuevo Exp</button>
+          <button className="btn btn-success mb-4 " onClick={handleClearForm}>
+            Nuevo Exp
+          </button>
 
           <div className="col-md-6 mb-4">
             <div className="card">
@@ -178,18 +221,18 @@ function MainContainer() {
                     value={inputValues.mesAudiencia}
                     onChange={handleChange}
                   >
-                    <option value={0}>ENERO</option>
-                    <option value={1}>FEBRERO</option>
-                    <option value={2}>MARZO</option>
-                    <option value={3}>ABRIL</option>
-                    <option value={4}>MAYO</option>
-                    <option value={5}>JUNIO</option>
-                    <option value={6}>JULIO</option>
-                    <option value={7}>AGOSTO</option>
-                    <option value={8}>SETIEMBRE</option>
-                    <option value={9}>OCTUBRE</option>
-                    <option value={10}>NOVIEMBRE</option>
-                    <option value={11}>DICIEMBRE</option>
+                    <option value={"ENERO"}>ENERO</option>
+                    <option value={"FEBRERO"}>FEBRERO</option>
+                    <option value={"MARZO"}>MARZO</option>
+                    <option value={"ABRIL"}>ABRIL</option>
+                    <option value={"MAYO"}>MAYO</option>
+                    <option value={"JUNIO"}>JUNIO</option>
+                    <option value={"JULIO"}>JULIO</option>
+                    <option value={"AGOSTO"}>AGOSTO</option>
+                    <option value={"SEPTIEMBRE"}>SEPTIEMBRE</option>
+                    <option value={"OCTUBRE"}>OCTUBRE</option>
+                    <option value={"NOVIEMBRE"}>NOVIEMBRE</option>
+                    <option value={"DICIEMBRE"}>DICIEMBRE</option>
                   </select>
                 </div>
                 <div className="col-md-2">
@@ -204,9 +247,7 @@ function MainContainer() {
                     value={inputValues.anioAudiencia}
                     onChange={handleChange}
                   >
-                    <option value={"2024"}>
-                      2024
-                    </option>
+                    <option value={"2024"}>2024</option>
                     <option value={"2025"}>2025</option>
                     <option value={"2026"}>2026</option>
                   </select>
@@ -225,9 +266,7 @@ function MainContainer() {
                   >
                     <option value={"9:00 A.M."}>9:00 A.M.</option>
                     <option value={"9:30 A.M."}>9:30 A.M.</option>
-                    <option value={"10:00 A.M."}>
-                      10:00 A.M.
-                    </option>
+                    <option value={"10:00 A.M."}>10:00 A.M.</option>
                     <option value={"10:30 A.M."}>10:30 A.M.</option>
                     <option value={"11:00 A.M."}>11:00 A.M.</option>
                     <option value={"11:30 A.M."}>11:30 A.M.</option>
@@ -375,8 +414,6 @@ function MainContainer() {
           {/* end datos denunciante y Denunciado */}
 
           <div className="row m-4">
-
-           
             <div className="col-md-4">
               <label htmlFor="inputFechaDocumento" className="form-label">
                 Fecha del documento:
@@ -435,18 +472,18 @@ function MainContainer() {
                 value={inputValues.mesDocumento}
                 onChange={handleChange}
               >
-                <option value={0}>ENERO</option>
-                <option value={1}>FEBRERO</option>
-                <option value={2}>MARZO</option>
-                <option value={3}>ABRIL</option>
-                <option value={4}>MAYO</option>
-                <option value={5}>JUNIO</option>
-                <option value={6}>JULIO</option>
-                <option value={7}>AGOSTO</option>
-                <option value={8}>SETIEMBRE</option>
-                <option value={9}>OCTUBRE</option>
-                <option value={10}>NOVIEMBRE</option>
-                <option value={11}>DICIEMBRE</option>
+                <option value={"ENERO"}>ENERO</option>
+                <option value={"FEBRERO"}>FEBRERO</option>
+                <option value={"MARZO"}>MARZO</option>
+                <option value={"ABRIL"}>ABRIL</option>
+                <option value={"MAYO"}>MAYO</option>
+                <option value={"JUNIO"}>JUNIO</option>
+                <option value={"JULIO"}>JULIO</option>
+                <option value={"AGOSTO"}>AGOSTO</option>
+                <option value={"SEPTIEMBRE"}>SEPTIEMBRE</option>
+                <option value={"OCTUBRE"}>OCTUBRE</option>
+                <option value={"NOVIEMBRE"}>NOVIEMBRE</option>
+                <option value={"DICIEMBRE"}>DICIEMBRE</option>
               </select>
             </div>
             <div className="col-md-4">
@@ -475,18 +512,17 @@ function MainContainer() {
               className="btn btn-primary d-block "
               onClick={handleGenerateReport}
             >
-              
               Generar PDF
             </button>
           </div>
 
           {/* end button */}
 
-
           {/* end border */}
         </div>
-        
-        <PDFViewerComponent data={reportData} />
+        {/* Muestra el PDF cuando reportData tenga datos */}
+        {reportData.length > 0 && showPDF()}
+        {/* <PDFViewerComponent data={reportData} /> */}
       </div>
     </section>
   );
